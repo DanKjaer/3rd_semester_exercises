@@ -15,42 +15,50 @@ public class MediumLinqExercises : IMediumLinqExercises
 {
     public int CountVowels(string text)
     {
-        throw new NotImplementedException();
+        return text.Count("aeiou".Contains);
     }
 
     public List<int> GetNumbersInRange(List<int> numbers, int start, int end)
     {
-        throw new NotImplementedException();
+        var q = from i in numbers
+            where (numbers.IndexOf(i) >= start && numbers.IndexOf(i) <= end)
+            select i;
+        return q.ToList();
     }
 
     public int GetSumOfSquares(List<int> numbers)
     {
-        throw new NotImplementedException();
+        var q = from i in numbers select i * i;
+        return q.Sum();
+
     }
 
     public List<string> GetWordsLongerThanN(List<string> words, int n)
     {
-        throw new NotImplementedException();
+        var q = from i in words where i.Length > n select i;
+        return q.ToList();
     }
 
     public List<string> GetDistinctWords(string text)
     {
-        throw new NotImplementedException();
+        return text.Split(" ").Distinct().ToList();
     }
 
     public bool AnyWordStartsWithA(List<string> words)
     {
-        throw new NotImplementedException();
+        var q = from i in words where i.ToLower()[0].Equals('a') select i;
+        return q.Any();
     }
 
     public List<int> GetNumbersDivisibleBy3Or5(List<int> numbers)
     {
-        throw new NotImplementedException();
+        var q = from i in numbers where i % 3 == 0 || i % 5 == 0 select i;
+        return q.ToList();
     }
 
     public List<string> GetWordsSortedByLength(string text)
     {
-        throw new NotImplementedException();
+        var q = from i in text where 
     }
 
     public List<int> GetSquaredNumbersSorted(List<int> numbers)

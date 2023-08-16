@@ -17,7 +17,7 @@
 **Learning objective:** You must know how to structure an application.
 
 
----
+--- 
 
 ### Add a nuget package
 
