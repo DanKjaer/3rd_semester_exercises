@@ -58,27 +58,40 @@ public class MediumLinqExercises : IMediumLinqExercises
 
     public List<string> GetWordsSortedByLength(string text)
     {
-        var q = from i in text where 
+        var q = text.Split(" ").ToList();
+        return q.OrderBy(s => s.Length).ToList();
     }
 
     public List<int> GetSquaredNumbersSorted(List<int> numbers)
     {
-        throw new NotImplementedException();
+        var q = from i in numbers select i * i;
+        return q.Order().ToList();
     }
 
     public int CountUniqueCharacters(string text)
     {
-        throw new NotImplementedException();
+        return text.Distinct().Count();
     }
 
     public Dictionary<string, int> GetWordFrequencies(string text)
     {
-        throw new NotImplementedException();
+        var dict = new Dictionary<string, int>();
+        var words = text.Split(' ').ToList();
+        var uniques = GetDistinctWords(text);
+        foreach (var unique in uniques)
+        {
+            {
+                var q = from w in words where w.Equals(unique) select w;
+                dict.Add(unique, q.Count());
+            }
+        }
+
+        return dict;
     }
 
     public string GetLongestString(List<string> strings)
     {
-        throw new NotImplementedException();
+        return strings.OrderBy(s => s.Length).Reverse().ToList()[0];
     }
 }
 
