@@ -16,7 +16,14 @@ public class AddBookToUsersReadingListExercise
     /// <exception cref="NotImplementedException"></exception>
     public bool AddBookToUsersReadingList(int bookId, int userId)
     {
-        throw new NotImplementedException();
+        var sql = $@"INSERT INTO library.reading_list_items (book_Id, user_Id)
+                     VALUES (@bookId, @userId) RETURNING
+                     book_id as {nameof(Book.BookId)},
+                     user_id as {nameof(EndUser.EndUserId)}";
+        using (var conn = Helper.DataSource.OpenConnection())
+        {
+            return conn.Execute(sql, new { bookId, userId }) == 1;
+        }
     }
     
     
